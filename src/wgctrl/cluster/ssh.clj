@@ -46,19 +46,7 @@
   (->> (-> (shell/sh "ssh" e "wg" "show" i "latest-handshakes") :out
       (str/split #"\n"))
   (map #(str/split % #"\t"))
-  (map #(zipmap [:peer :latest] %))
-
-  ))
-
-
-
-(def ps (latest-peers "root@195.2.71.41" "wg0"))
-(-> ps)
-
-(filter #(= "0" (:latest %)) ps)
-
-(count (filter #(nil? (:allowed %)) ps))
-(map (fn [x] (:allowed x)) (filter #(not(nil? (:allowed %))) ps))
+  (map #(zipmap [:peer :latest] %))))
 
 (defn peers
   "Gets real peers from WG interface "
