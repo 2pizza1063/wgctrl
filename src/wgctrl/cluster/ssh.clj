@@ -20,10 +20,10 @@
 (defn peer!
   "Creates peer on WG node"
   [pubkey interface ip]
-  (println (str "Run command --> " "ssh" (str "root@" (-> interface .endpoint :inet))
-            "wg" "set" (.name interface)
-            "peer" pubkey
-            "allowed-ips" (str ip "/32")))
+  (println (str "Run command --> " "ssh " (str "root@" (-> interface .endpoint :inet))
+            " wg" " set " (.name interface)
+            " peer " pubkey
+            " allowed-ips " (str ip "/32")))
   (shell/sh "ssh" (str "root@" (-> interface .endpoint :inet))
             "wg" "set" (.name interface)
             "peer" pubkey

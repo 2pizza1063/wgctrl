@@ -33,6 +33,7 @@
                                     ip/addr->int)) (filter #(not (nil? (.allowed-ips %))) @(.peers interface)))
                          sort
                          (map #(ip/int->addr %)))]
+      (println (str "DEBUG addr! " subnet " " size " " addresses ))
       (cond
         (= 0 size) (ip/addr++ (ip/addr subnet))
         (>= size (ip/size (ip/mask subnet))) nil
